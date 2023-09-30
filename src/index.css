@@ -1,0 +1,8 @@
+/* Reset or normalize base styles for consistent cross-browser styling */
+@tailwind base;
+
+/* Define reusable components with utility classes for building UI components */
+@tailwind components;
+
+/* Apply utility classes to style elements and layout throughout the application */
+@tailwind utilities;
