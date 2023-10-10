@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // Import Firebase authentication module
 import { auth } from "../firebase";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 // Define the Login component
 function Login() {
     // Initialize state variables for email and password
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+
     // Get a function to navigate between routes
     const navigate = useNavigate();
 
@@ -18,11 +19,12 @@ function Login() {
     const signIn = (e) => {
         e.preventDefault();
         // Attempt to sign in with email and password
-        auth
-            .signInWithEmailAndPassword(email, password)
-            .then((auth) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((user) => {
                 // If sign-in is successful, navigate to the home page
-                navigate('/')
+                if (user) {
+                    navigate('/')
+                }
             })
             .catch((error) => console.log(error.message));
     };
@@ -31,13 +33,11 @@ function Login() {
     const register = (e) => {
         e.preventDefault();
         // Attempt to create a new user with email and password
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((auth) => {
-                console.log(auth)
-                if (auth) {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((user) => {
+                if (user) {
+                    navigate("/")
                     // If registration is successful, navigate to the home page
-                    navigate('/');
                 }
             })
             .catch((error) => console.log(error.message));

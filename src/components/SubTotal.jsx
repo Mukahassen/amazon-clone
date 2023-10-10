@@ -1,9 +1,10 @@
 // Import necessary dependencies and components
 import CurrencyFormat from 'react-currency-format';
 import { useStateValue } from './StateProvider';
-
+import { useNavigate } from 'react-router-dom';
 // Define the SubTotal component
 const SubTotal = () => {
+    const navigate = useNavigate();
     // Access the 'basket' and 'dispatch' function from the global state
     const [{ basket }, dispatch] = useStateValue();
 
@@ -34,7 +35,12 @@ const SubTotal = () => {
                 prefix={'$'} // Prefix for the currency
             />
             {/* Proceed to checkout button */}
-            <button className='bg-yellow-300 p-2 rounded mt-[30px] w-[300px] text-[20px]'>Proceed to Checkout</button>
+            <button
+                onClick={() => {
+                    navigate('/payment')
+                }}
+                className='bg-yellow-300 p-2 rounded mt-[30px] w-[300px] text-[20px]'>
+                Proceed to Checkout</button>
         </div>
     );
 }

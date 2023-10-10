@@ -42,12 +42,15 @@ function CheckoutProducts({ id, image, title, price, rating, hideButton }) {
                 </div>
 
                 {/* Remove from Basket button */}
-                <button className="bg-[#f0c14b] p-2 rounded mt-4 md:w-[200px]" onClick={removeFromBasket}>
-                    Remove from Basket
-                </button>
+            
+                    {!hideButton && (
+                        <button className="bg-[#f0c14b] p-2 rounded mt-4 md:w-[200px]" onClick={removeFromBasket}>Remove from Basket</button>
+                    )}{""}
             </div>
         </div>
     );
 }
 
 export default CheckoutProducts;
+
+

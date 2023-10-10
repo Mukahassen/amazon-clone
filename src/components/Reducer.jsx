@@ -20,6 +20,11 @@ const reducer = (state, action) => {
                 ...state, // Copy the current state
                 basket: [...state.basket, action.item], // Add the new item to the basket
             };
+            case 'EMPTY_BASKET':
+                return{
+                    ...state,
+                    basket: []
+                }
         case "REMOVE_FROM_BASKET":
             // Find the index of the item to be removed in the basket
             const index = state.basket.findIndex(

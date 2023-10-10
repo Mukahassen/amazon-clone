@@ -53,7 +53,9 @@ const Header = () => {
                 {/* Returns and orders section */}
                 <div className="flex flex-col mx-[20px] text-white">
                     <span className="text-[15px]">Returns</span>
-                    <span className="text-[15px] font-semibold">$Order</span>
+                    <Link to="/orders"><span className="text-[15px] font-semibold cursor-pointer">$Order</span></Link>
+
+
                 </div>
 
                 {/* Prime membership section */}

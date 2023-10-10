@@ -9,6 +9,15 @@ import Login from './pages/Login'
 import { useEffect } from 'react'
 import { auth } from './firebase'
 import { useStateValue } from './components/StateProvider'
+import Payment from './components/Payment'
+
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Orders from './components/Orders'
+
+const promise = loadStripe(
+  "pk_test_51Nxnu9EmxlaDANOM9VeXaxGV2g1VHwSOYC7sR54PbJHdaTHPiBgpGEL1yQ9Heu42vqqPjpyF3BCT4nCWVKrmwVCL00QDpgRQX7");
+
 
 function App() {
   // Access the global state and dispatch function from the context
@@ -40,13 +49,18 @@ function App() {
   return (
     <>
       {/* Render the Header component */}
+      {}
       <Header />
 
       {/* Define routes for the application */}
-      <Routes>
+      <Routes> 
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/payment' element={ <Elements stripe={promise}>
+          <Payment/>
+        </Elements>}/>
+        <Route path='/orders' element={<Orders />} />
       </Routes>
     </>
   )
